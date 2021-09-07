@@ -9,6 +9,7 @@ case user_choice do
             |> Enum.filter(fn x -> x != "" end)
             |> Enum.count()
             |> IO.inspect()
+            
     "words" -> 
         _words =
             File.read!(filename)
