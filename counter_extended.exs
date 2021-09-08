@@ -9,7 +9,6 @@ Flags
 -c     displays character count, no spaces or break lines
 -C     displays character count
 -w     displays word count, no special characters (default)
--W     display word count with all special characters
 
 Multiple flags may be used. Example usage to display line and character count:
 somefile.txt -lc
@@ -31,9 +30,6 @@ else
     words = 
         String.split(body, ~r{(\\n|[^\w'])+})
         |> Enum.filter(fn x -> x != "" end)
-    words_with_spec =
-        String.split(body, " ")
-        |> Enum.filter(fn x -> x != "" end)
     chars = String.split(body, "") |> Enum.filter(fn x -> x != "" && x != " " end)
     chars_with_spaces = String.split(body, "") |> Enum.filter(fn x -> x != "" end)
 
@@ -42,7 +38,6 @@ else
             "l" -> IO.puts("Number of lines without break lines: #{Enum.count(lines)}")
             "L" -> IO.puts("Total amount of lines: #{Enum.count(lines_with_break)}")
             "w" -> IO.puts("Number of words without special characters: #{Enum.count(words)}")
-            "W" -> IO.puts("Total amount  words with special characters: #{Enum.count(words_with_spec)}")
             "c" -> IO.puts("Number of chars without spaces: #{Enum.count(chars)}")
             "C" -> IO.puts("Total amount of chars with spaces: #{Enum.count(chars_with_spaces)}")
             _ -> nil
